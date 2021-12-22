@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import * as THREE from 'three';
 import {useHelper} from '@react-three/drei';
 
-import Film from '../Film';
+import Photograph from '../Photograph';
 
 const Scene = () => {
 	const pointLightRef = useRef();
@@ -19,7 +19,7 @@ const Scene = () => {
 				ref={pointLightRef}
 			/>
 
-			<Film />
+			<Photograph />
 		</>
 	);
 };

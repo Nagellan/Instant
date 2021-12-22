@@ -4,7 +4,7 @@ import {useFrame} from '@react-three/fiber';
 
 type Props = JSX.IntrinsicElements['mesh'];
 
-const Film = (props: Props) => {
+const Photograph = (props: Props) => {
 	const meshRef = useRef<THREE.Mesh>(null!);
 
 	useFrame(() => {
@@ -25,4 +25,4 @@ const Film = (props: Props) => {
 	);
 };
 
-export default Film;
+export default Photograph;

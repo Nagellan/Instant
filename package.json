@@ -1,7 +1,7 @@
 {
 	"name": "instant",
 	"version": "0.0.1",
-	"description": "Instant films playground",
+	"description": "Instant photographs playground",
 	"main": "src/index.tsx",
 	"type": "module",
 	"scripts": {

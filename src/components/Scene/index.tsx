@@ -2,13 +2,16 @@ import React, {useRef} from 'react';
 import * as THREE from 'three';
 import {useHelper} from '@react-three/drei';
 
+import {WEBPACK_MODE} from '~/constants/env';
 import Photograph from '../Photograph';
 
 const Scene = () => {
 	const pointLightRef = useRef();
 
-	// TODO: Remove later
-	useHelper(pointLightRef, THREE.PointLightHelper, 0.5, 'hotpink');
+	// TODO: maybe remove later
+	if (process.env.NODE_ENV === WEBPACK_MODE.DEV) {
+		useHelper(pointLightRef, THREE.PointLightHelper, 0.5, 'hotpink');
+	}
 
 	return (
 		<>

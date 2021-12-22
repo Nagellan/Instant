@@ -10,7 +10,11 @@
 		"target": "es5",
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
-		"jsx": "react"
+		"jsx": "react",
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["src/*"]
+		}
 	},
 	"include": ["./src/**/*"]
 }

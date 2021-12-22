@@ -2,6 +2,7 @@ import {fileURLToPath} from 'url';
 import {resolve, dirname} from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,6 +18,7 @@ const config = {
 			template: './src/index.html',
 		}),
 		new MiniCssExtractPlugin(),
+		new BundleAnalyzerPlugin(),
 	],
 	module: {
 		rules: [

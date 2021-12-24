@@ -2,6 +2,7 @@ import {fileURLToPath} from 'url';
 import {resolve, dirname} from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,13 +12,16 @@ const config = {
 	entry: ['react-hot-loader/patch', './src/index.tsx'],
 	output: {
 		path: resolve(__dirname, 'dist'),
-		filename: 'bundle.js',
+		filename: '[name].bundle.js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html',
 		}),
 		new MiniCssExtractPlugin(),
+		new CompressionPlugin({
+			test: /\.(html|css|js)(\?.*)?$/i,
+		}),
 		new BundleAnalyzerPlugin(),
 	],
 	module: {
@@ -50,6 +54,37 @@ const config = {
 			'~': resolve(__dirname, 'src'),
 		},
 	},
+	optimization: {
+		runtimeChunk: 'single',
+		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
+			cacheGroups: {
+				reactVendor: {
+					test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+					name: 'reactVendor',
+				},
+				threeVendor: {
+					test: /[\\/]node_modules[\\/](three)[\\/]/,
+					name: 'threeVendor',
+				},
+				vendor: {
+					test: /[\\/]node_modules[\\/](!react)(!react-dom)(!three)[\\/]/,
+					name: 'vendor',
+				},
+			},
+		},
+	},
 };
 
-export default config;
+export default (env, argv) => {
+	if (argv.mode === 'development') {
+	}
+
+	if (argv.mode === 'production') {
+		config.devtool = false;
+	}
+
+	return config;
+};

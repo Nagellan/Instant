@@ -3,7 +3,6 @@ import {resolve, dirname} from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,7 +21,6 @@ const config = {
 		new CompressionPlugin({
 			test: /\.(html|css|js)(\?.*)?$/i,
 		}),
-		new BundleAnalyzerPlugin(),
 	],
 	module: {
 		rules: [

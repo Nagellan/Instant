@@ -6,3 +6,4 @@ dist
 !dist/index.html
 *.log
 stats.json
+.DS_Store

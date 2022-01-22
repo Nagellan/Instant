@@ -10,7 +10,7 @@ const config = {
 	entry: ['react-hot-loader/patch', './src/index.tsx'],
 	output: {
 		path: resolve(__dirname, 'dist'),
-		filename: '[name].bundle.js',
+		filename: '[name].[contenthash].js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -55,17 +55,18 @@ const config = {
 			maxInitialRequests: Infinity,
 			minSize: 0,
 			cacheGroups: {
-				reactVendor: {
-					test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-					name: 'reactVendor',
-				},
-				threeVendor: {
-					test: /[\\/]node_modules[\\/](three)[\\/]/,
-					name: 'threeVendor',
-				},
 				vendor: {
-					test: /[\\/]node_modules[\\/](!react)(!react-dom)(!three)[\\/]/,
-					name: 'vendor',
+					test: /[\\/]node_modules[\\/]/,
+					name(module) {
+						// get the name. E.g. node_modules/packageName/not/this/part.js
+						// or node_modules/packageName
+						const packageName = module.context.match(
+							/[\\/]node_modules[\\/](.*?)([\\/]|$)/
+						)[1];
+
+						// npm package names are URL-safe, but some servers don't like @ symbols
+						return `npm.${packageName.replace('@', '')}`;
+					},
 				},
 			},
 		},

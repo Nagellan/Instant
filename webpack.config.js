@@ -10,7 +10,7 @@ const config = {
 	entry: ['react-hot-loader/patch', './src/index.tsx'],
 	output: {
 		path: resolve(__dirname, 'dist'),
-		filename: '[name].[contenthash].js',
+		filename: '[name].js',
 	},
 	plugins: [
 		new HtmlWebpackPlugin({

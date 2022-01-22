@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkinstant=self.webpackChunkinstant||[]).push([[72],{878:(n,t,u)=>{u.d(t,{Z:()=>c});const c=function(n){return function(t){n.forEach((function(n){"function"==typeof n?n(t):null!=n&&(n.current=t)}))}}}}]);
